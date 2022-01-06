@@ -1,0 +1,114 @@
+%! Author = christophherb
+
+
+\documentclass[a4paper, 12pt]{article}
+%TC:incbib
+
+%%%%%%%% CREATE DOCUMENT STRUCTURE %%%%%%%%
+%% Language and font encodings
+\renewcommand*{\familydefault}{\sfdefault}
+\usepackage[ngerman]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}% verbesserter Randausgleichjk
+\usepackage[scaled]{uarial}
+%\usepackage{subfig}
+
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+
+%% Packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{sectsty}
+\usepackage{apacite}
+\usepackage{float}
+\usepackage{titling}
+\usepackage{blindtext}
+\usepackage[square,sort,comma,numbers]{natbib}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{xcolor}
+\definecolor{darkgreen}{rgb}{0.0, 0.4, 0.0}
+\usepackage{verbatim}
+
+%%%%%%%% Functions %%%%%%%%
+%% Count Characters
+\newcommand{\charactercount}[1]{
+    \immediate\write18{
+        expr `texcount -1 -sum -merge #1.tex` + `texcount -1 -sum -merge -char #1.tex` - 1
+        > build/.chars.txt
+    } 
+    \input{build/.chars.txt}
+}
+
+%% Count Words
+\newcommand{\quickwordcount}[1]{%
+    \immediate\write18{
+      texcount -1 -sum -merge -q #1.tex > build/.#1-words.sum 
+    }
+    \input{build/.#1-words.sum}%
+}
+
+
+%%%%%%%% Variables %%%%%%%%
+\newcommand{\firstname}{Max }
+\newcommand{\name}{Mustermann }
+\newcommand{\email}{example@example.com}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 							% horizontal line and its thickness
+
+
+%%%%%%%% DOCUMENT %%%%%%%%
+%%%% Title Page
+\begin{document}
+    \begin{titlepage}
+        \center
+        %\vspace*{2.0cm}
+        \includegraphics[width=0.6\textwidth]{figs/img/hsa_logo.jpg}\\[1.5cm] 	% University logo
+
+        \HRule \\[0.2cm]
+        {
+          \huge \bfseries Example Bericht 1\\[0.3cm]
+          \large Sommersemester 2021
+        }\\[0.2cm]								% Assignment
+        \HRule \\[2cm]
+
+        \begin{flushleft}
+          \large
+          \firstname \name\\
+          \email\\
+          Informatik
+          \\[1.5cm]
+          \charactercount{main} Zeichen (mit Leerzeichen)\\
+        \end{flushleft}
+        %{\large \today}\\[5cm]
+        \vfill
+    \end{titlepage}
+
+%%\begin{abstract}
+%%Your abstract.
+%%\end{abstract}
+
+    %%%% SECTIONS
+    %% Section 1
+    \section{Das Projekt}
+    \subsection{Organisation}
+
+    % \begin{figure}[H]
+    %     \includegraphics[width=\textwidth]{images/organigram}
+    %     \caption{Organigramm Team Pyramid 2021}\label{fig:figure}
+    % \end{figure}
+
+
+    \newpage
+    \section{Resümee}
+    \subsection{Persönliches Resümee}
+
+
+    \subsection{Allgemeines Resümee}
+
+
+\end{document}
